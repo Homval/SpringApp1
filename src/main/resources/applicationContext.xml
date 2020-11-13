@@ -22,7 +22,8 @@
     </bean>
 
     <bean id="musicPlayer"
-          class="ru.khomyakov.springlearning.MusicPlayer">
+          class="ru.khomyakov.springlearning.MusicPlayer"
+        scope="prototype">
         <property name="musicList">
             <list>
                 <ref bean="classicalMusicBean"/>
