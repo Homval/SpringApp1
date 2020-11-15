@@ -1,8 +1,10 @@
 package ru.khomyakov.springlearning;
 
+import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MusicPlayer {
     private List<Music> musicList = new ArrayList<>();
     private String name;
