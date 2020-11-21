@@ -1,5 +1,7 @@
 package ru.khomyakov.springlearning;
 
+import java.util.List;
+
 public interface Music {
-    String getSong();
+    List<String> getSong();
 }
