@@ -1,34 +1,35 @@
 package ru.khomyakov.springlearning;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.List;
 import java.util.Random;
 
-@Component
 public class MusicPlayer {
-    private Music music1;
-    private Music music2;
+    @Value("${musicPlayer.name}")
+    private String name;
 
-    @Autowired
-    public MusicPlayer(@Qualifier("classicalMusic") Music music1,
-                       @Qualifier("rockMusic") Music music2) {
-        this.music1 = music1;
-        this.music2 = music2;
+    @Value("${musicPlayer.volume}")
+    private int volume;
+
+    private final List<Music> genres;
+
+    public MusicPlayer(List<Music> genres) {
+        this.genres = genres;
     }
 
-    public void playMusic(MusicStyle style){
+    public String getName() {
+        return name;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void playMusic(){
         Random random = new Random();
         int i = random.nextInt(3);
-        switch (style.ordinal()) {
-            case 0 :
-                System.out.println("Playing " + music1.getSong().get(i));
-                break;
-            case 1 :
-                System.out.println("Playing " + music2.getSong().get(i));
-                break;
-        }
+        System.out.println("Playing " + genres.get(i).getSong() + " with volume " + getVolume());
     }
 }
